@@ -1,0 +1,109 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : WD Text-To-Speech
+ major_version : 28
+ minor_version : 0
+ type : 4097
+ description : WD Text-To-Speech
+ subtype : 0
+project :
+ identifier : 0x0
+ internal_properties : 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
+ configurations :
+  -
+    name : WD Text-To-Speech
+    internal_properties : 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
+    configuration_id : 12789861583492545316
+    type : 1
+    generation_name : WD Text-To-Speech.exe
+    version :
+     major_version : 21
+     internal_generation_version : 3
+     autoincrement_version : false
+    icon_filename : .\parler.ico
+    language : 1
+    new_features_help :
+     name : ""
+     internal_properties : CAAAAAgAAAAT7zC6QQKjv19XXvIDt4WQefEaJMKOBxBjOw2zGsVYEOS5aAMkmUzvEHWGaL3OtOFP632A+KqMnuYUEA==
+ elements :
+  identifier : 0x4aeac9dd0046d126
+  elements :
+   -
+     name : pTextToSpeech
+     identifier : 0x47f210fe00007922
+     internal_properties : CAAAAAgAAACtqYWZJhMbxJM4+Ns06eRVTciUBLh0F/lTgVNMe6R2Yl6y3xkKPgprvGZQqGiYYFC4uA==
+     physical_name : .\pTextToSpeech.wdg
+     type : 7
+   -
+     name : FEN_EXEMPLE
+     identifier : 0x47f213e80000dbaf
+     internal_properties : CAAAAAgAAABIxrBsWwAoMzyFxQTVDDuwLK37I4WpLIhXhGptSMdVQ70VvjrpH+lIWcM9u3t1DYNN1Q==
+     physical_name : .\FEN_EXEMPLE.wdw
+     type : 2
+   -
+     name : TEST_EXEMPLE
+     identifier : 0x4aeae55f0027451f
+     internal_properties : CAAAAAgAAACSaMre7VrSjarvux7voKmKDhN9fWMnesqH+GJ1fIMJzzX5ltJH+c+u8y2XYSHfmw33fw==
+     physical_name : .\TEST_EXEMPLE.wxt
+     type : 17
+  other_elements :
+   -
+     physical_name : .\description.rtf
+   -
+     physical_name : .\description.gif
+  net_assemblies :
+   -
+     name : System.Speech
+     internal_properties : CAAAAAgAAAAyTlCTdBme2sRHCGaIXE3x9C7MGISwdLb4VA==
+     description : "System.Speech, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+     physical_name : System.Speech.dll
+   -
+     name : MSCORLIB
+     internal_properties : CAAAAAgAAAAyTlCTdBme2sRHCGaIXE3x9C7MGISwdLb4VA==
+     description : "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+     physical_name : mscorlib.dll
+  uwp_api : []
+  external_components : []
+  internal_components : []
+ report_and_queries_enabled : false
+ common_generation_directory : true
+ languages :
+  - fr-FR
+ code_elements :
+  internal_properties : CAAAAAgAAABNWcjm39ZqCP9eiT2w4AYeaS9SNVwxf1x0xYPeM1PFYFFStWF7554jG5pqWWiKWL664LPDzTwyHS/LRHH4CK5dfkCkpdSNGjcxA3H8N0nVBBWZKPbi9xEf1Q==
+  type_code : 0
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAABvSYlQr4Q9VhFq52jMxyY/0QuOzEY3JwuJsCtG6PUpqXv2uDjlgtVhErnvtmxSKzzhHPi0xtqJrf0khzg1O9d7Ejpr/t7D662H+WHvE5W5yVgyCyJnhp0cVw+Uz/QUpFem8uac2yFkEK+yUwg=
+     code : |1+
+      
+      // Vérifie la version de DOTNET
+      SI VérifieVersionDOTNET() = Faux ALORS
+      	FinProgramme("Le framework .NET 3.0 ou ultérieur doit être installé")
+      FIN
+     type : 196608
+   -
+     type : 196621
+   -
+     type : 196627
+     enabled : false
+  orphans :
+   -
+     name : WD Text-To-Speech
+     identifier : 0x4aeac9dd0049d1a3
+     code_elements :
+      type_code : 159
+      p_codes : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+rad :
+ internal_properties : CAAAAAgAAABhIL0UXeZmxDJxY3Xy0Q==
+project_explorer :
+ explorer_type : project
+resources :
+ string_res :
+  identifier : 0x0
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAAAd98VSJfHHqE3P0QHwrwdhn7ig8dWBR6valpUTgnAMTVXiDg==

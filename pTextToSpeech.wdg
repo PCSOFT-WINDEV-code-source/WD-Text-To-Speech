@@ -1,0 +1,239 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : pTextToSpeech
+ major_version : 28
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+procedure_set :
+ identifier : 0x17f211ae0004273a
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ code_elements :
+  type_code : 31
+  p_codes :
+   -
+     code : |1-
+      
+      // Objet permettant d'effectuer la synthèse vocale
+      gclTextToSpeech est un SpeechSynthesizer
+     type : 720896
+  procedures :
+   -
+     name : VérifieVersionDOTNET
+     internal_properties : CAAAAAgAAABseYDv6udpGO0ve+5aUz+oJzAJy2frK+Ewfi3ZSXa4qhS8hDhsZu6VjD2sEXLxg3WHSMBKtJoZVPavDGZmtIKeveR9UTrEjjpToPq1IaKXfTwun2I98bSnBvkPNJe1x/IaTd9yvHw8S4wthc3ynTJTdqiXW7b+3d7Ev0PG5frWYyQaKfqE0BfeRci3ZP0qW3IE83J6hrObpxtQAZ4hJcx6zQjhlg==
+     procedure_id : 1725461067733482225
+     type_code : 15
+     group : 2
+     code : |1-
+      // Résumé : Vérifie la version de DOTNET installée
+      // Syntaxe :
+      //[ <Résultat> = ] VérifieVersionDOTNET ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	booléen : Vrai si une version compatible du framework DOTNET a été trouvée, Faux sinon
+      //
+      Procédure VérifieVersionDOTNET()
+      
+      sListeVersion est une chaine
+      sVersion est une chaine
+      rVersionMAX est un reel
+      bVersionOK est un booléen
+      
+      
+      // Récupère la liste des versions de DOTNET installées
+      sListeVersion = DotNetVersion(dnvListe)
+      
+      // Parcours la liste des versions
+      pour toute chaine sVersion de sListeVersion separee par rc
+      	
+      	// Détermine la version maximum
+      	si rVersionMAX < val(sVersion) ALORS
+      		rVersionMAX = Val(sVersion)
+      	FIN
+      	
+      FIN
+      
+      // Le framework DOTNET 3.0 minimum doit être présent
+      si rVersionMAX < 3.0 alors
+      	bVersionOK = faux
+      sinon
+      	bVersionOK = vrai
+      FIN
+      
+      
+      renvoyer bVersionOK
+     type : 458752
+   -
+     name : Parle
+     internal_properties : CAAAAAgAAAAeQeZWqR4YD9gNuw5ISpse4q5d4YfQh8vxSSLWonylqfGpzXAstIQfjtu5yNZJ9N/c91UXiZv53fcJCNn0zKQH2jXtD1BPimLproJX87E+1RbRiyhFUUvyPW0p6P5mipLcRRthNLb+/G4cHMU2fOcWaLmnLrlIMic+6HTcyeP/rQgO
+     procedure_id : 1725462528022572184
+     type_code : 15
+     group : 4
+     code : |1-
+      // Résumé : Effectue une synthèse vocale du texte passé en paramètre
+      // Syntaxe :
+      //[ <Résultat> = ] Parle (<sPhrase> est chaîne [, <bBloquant> est booléen [, <nVitesse> est entier]])
+      //
+      // Paramètres :
+      //	sPhrase (chaîne) : Texte à lire
+      //	bBloquant (booléen - valeur par défaut=1) : Vrai si la lecture du texte est bloquante, Faux sinon
+      //	nVitesse (entier - valeur par défaut=-1) : Vitesse de lecture
+      // Valeur de retour :
+      // 	booléen : Vrai si la synthèse a pu être lancée, Faux sinon
+      //
+      // Traitement automatique des exceptions :   exécuter le bloc de code CAS EXCEPTION:
+      //
+      
+      Procédure Parle(local sPhrase est une chaine, local bBloquant est un booléen = vrai, local nVitesse est un entier = -1)
+      
+      // Si aucune synthèse n'est en cours
+      SI ParleLectureEnCours() = faux ALORS
+      	
+      	// Sortie audio par défaut
+      	gclTextToSpeech:SetOutputToDefaultAudioDevice()
+      	
+      	si nVitesse <> -1 ALORS
+      		// Modifie la vitesse de lecture
+      		gclTextToSpeech:set_Rate(nVitesse)
+      	FIN
+      	
+      	si bBloquant alors
+      		// Lecture synchrone
+      		gclTextToSpeech:Speak(sPhrase)
+      	sinon
+      		// Lecture asynchrone
+      		gclTextToSpeech:SpeakAsync(sPhrase)
+      	fin
+      	
+      	renvoyer vrai	
+      fin
+      
+      
+      renvoyer faux
+      
+      CAS EXCEPTION:
+      	RENVOYER Faux
+     type : 458752
+   -
+     name : ParleVersFichier
+     internal_properties : CAAAAAgAAAAeQeZWqR4YD9gNuw5ISpse4q5d4YfQh8vxSSLWonylqfGpzXAstIQfjtu5yNZJ9N/c91UXiZv53fcJCNn0zKQH2jXtD1BPimLproJX87E+1RbRiyhFUUvyPW0p6P5mipLcRRthNLb+/G4cHMU2fOcWaLmnLrlIMic+6HTcyeP/rQgO
+     procedure_id : 1725464383448548266
+     type_code : 15
+     group : 4
+     code : |1-
+      // Résumé : Effectue une synthèse vocale du texte passé en paramètre vers un fichier audio (au format WAV)
+      // Syntaxe :
+      //[ <Résultat> = ] ParleVersFichier (<sPhrase> est chaîne, <sFichierAudioSortie> est chaîne [, <bBloquant> est booléen [, <nVitesse> est entier]])
+      //
+      // Paramètres :
+      //	sPhrase (chaîne) : Texte à lire
+      //	sFichierAudioSortie (chaîne) : Chemin complet du fichier audio qui sera généré
+      //	bBloquant (booléen - valeur par défaut=1) : Vrai si la lecture du texte est bloquante, Faux sinon
+      //	nVitesse (entier - valeur par défaut=-1) : Vitesse de lecture
+      // Valeur de retour :
+      // 	booléen : Vrai si la synthèse a pu être lancée, Faux sinon
+      //
+      // Traitement automatique des exceptions :   exécuter le bloc de code CAS EXCEPTION:
+      //
+      Procédure ParleVersFichier(local sPhrase est une chaine, local sFichierAudioSortie est une chaine, local bBloquant est un booléen = vrai, local nVitesse est un entier = -1)
+      
+      // Si aucune synthèse n'est en cours
+      si ParleLectureEnCours() = Faux alors
+      	
+      	// Sortie audio dans le fichier spécifié
+      	gclTextToSpeech:SetOutputToWaveFile(sFichierAudioSortie)
+      	
+      	SI nVitesse <> -1 ALORS
+      		// Modifie la vitesse de lecture
+      		gclTextToSpeech:set_Rate(nVitesse)
+      	FIN
+      	
+      	si bBloquant alors
+      		// Lecture synchrone
+      		gclTextToSpeech:Speak(sPhrase)
+      	sinon
+      		// Lecture asynchrone
+      		gclTextToSpeech:SpeakAsync(sPhrase)
+      	fin
+      	
+      	renvoyer vrai	
+      fin
+      
+      renvoyer faux
+      
+      CAS EXCEPTION:
+      RENVOYER Faux
+     type : 458752
+   -
+     name : ParleFin
+     internal_properties : CAAAAAgAAAAeQeZWqR4YD9gNuw5ISpse4q5d4YfQh8vxSSLWonylqfGpzXAstIQfjtu5yNZJ9N/c91UXiZv53fcJCNn0zKQH2jXtD1BPimLproJX87E+1RbRiyhFUUvyPW0p6P5mipLcRRthNLb+/G4cHMU2fOcWaLmnLrlIMic+6HTcyeP/rQgO
+     procedure_id : 1725484324982742583
+     type_code : 15
+     group : 4
+     code : |1-
+      // Résumé : Met fin à toutes les synthèses vocales en cours
+      // Syntaxe :
+      //[ <Résultat> = ] ParleFin ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	booléen : Vrai si la fonction a pu être exécutée, Faux sinon
+      //
+      // Traitement automatique des exceptions :   exécuter le bloc de code CAS EXCEPTION:
+      //
+      
+      Procédure ParleFin()
+      
+      // Si aucune synthèse n'est en cours
+      si ParleLectureEnCours() = faux alors renvoyer vrai
+      
+      // Met fin à toutes les synthèses vocales en cours
+      gclTextToSpeech:SpeakAsyncCancelAll()
+      
+      renvoyer vrai
+      
+      CAS EXCEPTION:
+      	renvoyer faux
+     type : 458752
+   -
+     name : ParleLectureEnCours
+     internal_properties : CAAAAAgAAAAeQeZWqR4YD9gNuw5ISpse4q5d4YfQh8vxSSLWonylqfGpzXAstIQfjtu5yNZJ9N/c91UXiZv53fcJCNn0zKQH2jXtD1BPimLproJX87E+1RbRiyhFUUvyPW0p6P5mipLcRRthNLb+/G4cHMU2fOcWaLmnLrlIMic+6HTcyeP/rQgO
+     procedure_id : 1725486042969732803
+     type_code : 15
+     group : 4
+     code : |1-
+      // Résumé : Indique si une synthèse vocale est en cours d'exécution
+      // Syntaxe :
+      //[ <Résultat> = ] ParleLectureEnCours ()
+      //
+      // Paramètres :
+      //	Aucun
+      // Valeur de retour :
+      // 	booléen : Vrai si une lecture est en cours, Faux sinon
+      //
+      // Traitement automatique des exceptions :   exécuter le bloc de code CAS EXCEPTION:
+      //
+      
+      Procédure ParleLectureEnCours()
+      
+      renvoyer (gclTextToSpeech:get_State() <> SynthesizerState::Ready)
+      
+      CAS EXCEPTION:
+      	renvoyer Faux
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : Collection1
+resources :
+ string_res :
+  identifier : 0x1fc79718195448f8
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
